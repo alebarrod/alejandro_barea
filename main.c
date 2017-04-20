@@ -10,7 +10,7 @@ void world_print(bool w[W_SIZE_X][W_SIZE_Y]);
 void world_step(/* Recibo dos mundos */);
 int world_count_neighbors(/* Recibo un mundo y unas coordenadas */);
 bool world_get_cell(/* Recibo un mundo y unas coordenadas */);
-void world_copy(/* Recibo dos mundos */);
+void world_copy(bool world_a[W_SIZE_X][W_SIZE_Y],bool world_b[W_SIZE_X][W_SIZE_Y]);
 
 int main()
 {
@@ -87,7 +87,12 @@ bool world_get_cell(/* Recibo un mundo y unas coordenadas */)
 	 */
 }
 
-void world_copy(/* Recibo dos mundos */)
+void world_copy(bool world_a[W_SIZE_X][W_SIZE_Y],bool world_b[W_SIZE_X][W_SIZE_Y])
 {
-	// TODO: copia el mundo segundo mundo sobre el primero
+	//Copia el segundo mundo (world_b) sobre el primero (world_a)
+	for(int i = 0; i < W_SIZE_X; i++){
+		for(int j = 0; j < W_SIZE_Y; j++){
+			world_a[i][j]=world_b[i][j];
+		}
+	}
 }
