@@ -5,9 +5,9 @@
 #define W_SIZE_X 10
 #define W_SIZE_Y 10
 
-void world_init(/* Recibo un mundo */);
+void world_init(bool world_a[W_SIZE_X][W_SIZE_Y]);
 void world_print(bool w[W_SIZE_X][W_SIZE_Y]);
-void world_step(/* Recibo dos mundos */);
+void world_step(bool world_a[W_SIZE_X][W_SIZE_Y],bool world_b[W_SIZE_X][W_SIZE_Y]);
 int world_count_neighbors(bool world_a[W_SIZE_X][W_SIZE_Y],int i,int j);
 bool world_get_cell(bool world_a[W_SIZE_X][W_SIZE_Y],int i,int j);
 void world_copy(bool world_a[W_SIZE_X][W_SIZE_Y],bool world_b[W_SIZE_X][W_SIZE_Y]);
@@ -22,7 +22,8 @@ int main()
 	do {
 		printf("\033cIteration %d\n", i++);
 		world_print(world_a);
-		// TODO: Itera
+		// Itera
+		world_step(world_a,world_b);
 	} while (getchar() != 'q');
 
 	return EXIT_SUCCESS;
@@ -60,18 +61,26 @@ void world_print(bool w[W_SIZE_X][W_SIZE_Y])
 	printf("\n");
 }
 
-void world_step(/* Recibo dos mundos */)
+void world_step(bool world_a[W_SIZE_X][W_SIZE_Y],bool world_b[W_SIZE_X][W_SIZE_Y])
 {
 	/*
-	 * TODO:
 	 * - Recorrer el mundo célula por célula comprobando si nace, sobrevive
 	 *   o muere.
-	 *
-	 * - No se puede cambiar el estado del mundo a la vez que se recorre:
-	 *   Usar un mundo auxiliar para guardar el siguiente estado.
-	 *
 	 * - Copiar el mundo auxiliar sobre el mundo principal
 	 */
+	
+	//Copia la matriz A en la matriz auxiliar B.
+	world_copy(world_b,world_a);
+	
+	//Comprobamos el estado de cada célula en la siguiente iteración y lo guardamos en world_b.
+	for(int i = 0; i < W_SIZE_X; i++){
+		for(int j = 0; j < W_SIZE_Y; j++){
+			world_b[i][j] = world_get_cell(world_a,i,j);
+		}
+	}
+	
+	//Aplicamos los cambios a la matriz principal world_a.
+	world_copy(world_a,world_b);
 	
 }
 
