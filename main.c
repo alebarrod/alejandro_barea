@@ -23,7 +23,7 @@ int main()
 		printf("\033cIteration %d\n", i++);
 		world_print(world_a);
 		// Itera
-		world_step(world_a,world_b);
+		world_step(world_a, world_b);
 	} while (getchar() != 'q');
 
 	return EXIT_SUCCESS;
@@ -73,9 +73,9 @@ void world_step(bool world_a[W_SIZE_X][W_SIZE_Y],bool world_b[W_SIZE_X][W_SIZE_Y
 	for (int i = 0; i < W_SIZE_X; i++) {
 		for (int j = 0; j < W_SIZE_Y; j++) {
 			if (world_a[i][j])
-				world_b[i][j] = (world_count_neighbors(world_a,i,j)==3 || world_count_neighbors(world_a,i,j)==2) ? true : false;
+				world_b[i][j] = (world_count_neighbors(world_a, i, j) == 3 || world_count_neighbors(world_a, i, j) == 2) ? true : false;
 			else
-				world_b[i][j] = (world_count_neighbors(world_a,i,j)==3) ? true : false;
+				world_b[i][j] = (world_count_neighbors(world_a, i, j) == 3) ? true : false;
 		}
 	}
 	
@@ -89,15 +89,15 @@ int world_count_neighbors(bool world_a[W_SIZE_X][W_SIZE_Y],int i,int j)
 	//Cuenta las células vivas adyacentes a la célula correspondiente a las coordenadas de i j en la matriz world_a
 	int cont = 0;
 	
-	cont += world_get_cell(world_a,i-1,j-1);
-	cont += world_get_cell(world_a,i-1,j);
-	cont += world_get_cell(world_a,i-1,j+1);
-	cont += world_get_cell(world_a,i,j-1);
-	cont += world_get_cell(world_a,i,j+1);
-	cont += world_get_cell(world_a,i+1,j-1);
-	cont += world_get_cell(world_a,i+1,j);
-	cont += world_get_cell(world_a,i+1,j+1);
-			
+	cont += world_get_cell(world_a, i-1, j-1);
+	cont += world_get_cell(world_a, i-1, j);
+	cont += world_get_cell(world_a, i-1, j+1);
+	cont += world_get_cell(world_a, i, j-1);
+	cont += world_get_cell(world_a, i, j+1);
+	cont += world_get_cell(world_a, i+1, j-1);
+	cont += world_get_cell(world_a, i+1, j);
+	cont += world_get_cell(world_a, i+1, j+1);
+
 	return cont;
 }
 
