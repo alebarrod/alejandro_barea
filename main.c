@@ -68,14 +68,13 @@ void world_step(bool world_a[W_SIZE_X][W_SIZE_Y],bool world_b[W_SIZE_X][W_SIZE_Y
 	 *   o muere.
 	 * - Copiar el mundo auxiliar sobre el mundo principal
 	 */
+	char num_neight;	//contador de vecinos
 	
 	//Comprobamos el estado de cada célula en la siguiente iteración y lo guardamos en world_b.
 	for (int i = 0; i < W_SIZE_X; i++) {
 		for (int j = 0; j < W_SIZE_Y; j++) {
-			if (world_a[i][j])
-				world_b[i][j] = (world_count_neighbors(world_a, i, j) == 3 || world_count_neighbors(world_a, i, j) == 2) ? true : false;
-			else
-				world_b[i][j] = (world_count_neighbors(world_a, i, j) == 3) ? true : false;
+			num_neight = world_count_neighbors(world_a, i, j);
+			world_b[i][j] = num_neight == 3 || (world_a[i][j] && num_neight == 2);
 		}
 	}
 	
