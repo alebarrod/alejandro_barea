@@ -57,7 +57,7 @@ void world_step(bool world_a[W_SIZE_X][W_SIZE_Y],bool world_b[W_SIZE_X][W_SIZE_Y
 	
 }
 
-int world_count_neighbors(bool world_a[W_SIZE_X][W_SIZE_Y],int i,int j)
+static int world_count_neighbors(bool world_a[W_SIZE_X][W_SIZE_Y],int i,int j)
 {
 	//Cuenta las células vivas adyacentes a la célula correspondiente a las coordenadas de i j en la matriz world_a
 	int cont = 0;
@@ -74,7 +74,7 @@ int world_count_neighbors(bool world_a[W_SIZE_X][W_SIZE_Y],int i,int j)
 	return cont;
 }
 
-bool world_get_cell(bool world_a[W_SIZE_X][W_SIZE_Y],int i,int j)
+static bool world_get_cell(bool world_a[W_SIZE_X][W_SIZE_Y],int i,int j)
 {
 	/*	Devuelve el estado de la célula de posición indicada
 	 * (¡cuidado con los límites del array!)
@@ -94,7 +94,7 @@ bool world_get_cell(bool world_a[W_SIZE_X][W_SIZE_Y],int i,int j)
 	return world_a[i][j];
 }
 
-void world_copy(bool world_a[W_SIZE_X][W_SIZE_Y],bool world_b[W_SIZE_X][W_SIZE_Y])
+static void world_copy(bool world_a[W_SIZE_X][W_SIZE_Y],bool world_b[W_SIZE_X][W_SIZE_Y])
 {
 	//Copia el segundo mundo (world_b) sobre el primero (world_a)
 	for (int i = 0; i < W_SIZE_X; i++) {

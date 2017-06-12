@@ -1,3 +1,5 @@
+CFLAGS = -Wall -Werror -Wextra
+
 .PHONY: all clean
 
 all: main
